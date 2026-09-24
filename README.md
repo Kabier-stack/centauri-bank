@@ -2,12 +2,12 @@
 
 A deliberately vulnerable, full-stack banking web application, built
 end-to-end (backend, frontend, database, containerization) to
-demonstrate practical application security testing methodology — not
+demonstrate practical application security testing methodology not
 just to list bugs.
 
 Centauri Bank is designed the way a real fintech product would be:
 authentication, wallets, transfers, an admin surface, tiered account
-privileges. Its vulnerabilities are not artificial — each one is the
+privileges. Its vulnerabilities are not artificial, each one is the
 believable byproduct of a real product decision (a rushed "premium"
 feature, a convenience endpoint, an incomplete authorization check),
 mirroring how vulnerabilities actually enter production applications.
@@ -22,14 +22,14 @@ mirroring how vulnerabilities actually enter production applications.
 
 Most portfolio "vulnerable apps" are cloned from a tutorial and
 patched with textbook bugs. Centauri Bank was built from a blank
-repository specifically to practice — and demonstrate — the full
+repository specifically to practice and demonstrate the full
 lifecycle of an AppSec engagement:
 
 1. Building a realistic target with genuine business logic
 2. Deliberately designing a **chained** vulnerability narrative,
    not a disconnected checklist
-3. Testing it through multiple methodologies — manual API testing,
-   Burp Suite interception, automated parameter/route discovery —
+3. Testing it through multiple methodologies manual API testing,
+   Burp Suite interception, automated parameter/route discovery
    and reporting the honest results of each, including where tools
    failed
 4. Writing findings to a professional report standard: severity
@@ -64,18 +64,18 @@ The recommended testing workflow:
    (standard vs. premium tiers; user vs. admin roles) purely from
    observed application behavior, before assuming anything about the
    backend.
-3. **Input and object analysis** — for each write endpoint, determine
+3. **Input and object analysis** - for each write endpoint, determine
    exactly which fields the client controls versus which the server
    should be deriving independently. Compare what a GET response
    discloses against what the corresponding write endpoint accepts.
-4. **Business logic testing** — identify any endpoint with real,
+4. **Business logic testing** - identify any endpoint with real,
    stateful side effects (balance changes especially) and consider
    both authorization *and* concurrency as attack surfaces, not just
    input validation.
 5. **Escalation** — determine whether any finding provides
    reconnaissance value or code-path access toward another finding.
    Not every relationship between findings is a true technical
-   dependency — state this precisely in your writeup.
+   dependency state this precisely in your writeup.
 
 This mirrors real API assessment methodology (see OWASP API Security
 Top 10, 2023) and is the same process this project's own findings were
@@ -108,7 +108,7 @@ Register a new account through the UI to begin testing.
 
 | Document | Contents |
 |---|---|
-| [`VULN_LOG.md`](./VULN_LOG.md) | Full internal vulnerability design log — every finding, its OWASP category, and the deliberate design reasoning behind it |
+| [`VULN_LOG.md`](./VULN_LOG.md) | Full internal vulnerability design log: every finding, its OWASP category, and the deliberate design reasoning behind it |
 | [`PENTEST_REPORT.md`](./PENTEST_REPORT.md) | Formal assessment report: executive summary, per-finding severity/reproduction/evidence/remediation, attack chain analysis, and honest black-box discovery methodology (including where automated tooling failed and why) |
 
 ---
@@ -123,12 +123,12 @@ Register a new account through the UI to begin testing.
 | 4 | Insufficient session revocation | API2 — Broken Authentication | Medium |
 | 5 | Broken function-level authorization on admin action | API5 — Broken Function Level Authorization | Critical |
 
-Findings 2 and 3 form a genuine technical escalation chain — Finding 2
+Findings 2 and 3 form a genuine technical escalation chain: Finding 2
 grants access to a code path that Finding 3's flaw lives inside.
 Finding 1 provides reconnaissance value toward the chain but is not a
 technical prerequisite for exploiting it; this distinction is
 addressed explicitly in the full report, since conflating
-"discoverability" with "dependency" is a common — and here,
+"discoverability" with "dependency" is a common and here,
 deliberately corrected — mistake.
 
 Full detail, reproduction steps, and evidence for every finding are in
