@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vault-bg: #0B1A14;
+  --color-vault-surface: #F5F3EE;
+  --color-vault-primary: #1F6E4A;
+  --color-vault-accent: #C9A34E;
+  --color-vault-danger: #8A1F2B;
+  --color-vault-muted: #3D453F;
+
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
