@@ -94,7 +94,7 @@ developed and documented under.
 ### Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/centauri-bank.git
+git clone https://github.com/Kabier-stack/centauri-bank.git
 cd centauri-bank
 ```
 
