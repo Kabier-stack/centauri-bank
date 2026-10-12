@@ -128,6 +128,7 @@ Once running:
 - Backend API: `http://localhost:3001`
 
 Register a new account through the UI to begin testing. On first run only, apply database migrations:
+
 ---
 
 ## Documentation
