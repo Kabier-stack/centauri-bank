@@ -85,23 +85,49 @@ developed and documented under.
 
 ## Running the Application
 
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/),
+  installed and running
+- Git
+
+### Setup
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/centauri-bank.git
 cd centauri-bank
+```
+
+Copy the example environment file and fill in real values:
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and set a real `POSTGRES_PASSWORD`, and generate a real
+`JWT_SECRET`:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+```
+
+Paste the output into `.env` as `JWT_SECRET`.
+
+### Run
+
+```bash
 docker compose up --build
+```
+
+```bash
+docker compose exec backend npx prisma migrate deploy
 ```
 
 Once running:
 - Frontend: `http://localhost:5173`
 - Backend API: `http://localhost:3001`
 
-On first run, apply database migrations:
-```bash
-docker compose exec backend npx prisma migrate deploy
-```
-
-Register a new account through the UI to begin testing.
-
+Register a new account through the UI to begin testing. On first run only, apply database migrations:
 ---
 
 ## Documentation
