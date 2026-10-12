@@ -157,9 +157,6 @@ docker compose logs frontend
 
 Make sure the backend and PostgreSQL containers are running, then review the error message. Do not repeatedly run commands without understanding the cause.
 
-### Security Notice
-
-Centauri Bank is a security learning and testing project. Use it locally or in an environment you are authorized to test. Do not expose the application or its test data publicly without appropriate security controls.
 ## Documentation
 
 | Document | Contents |
