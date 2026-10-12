@@ -55,24 +55,24 @@ lifecycle of an AppSec engagement:
 Centauri Bank is designed to reward a **black-box-first approach**.
 The recommended testing workflow:
 
-1. **Reconnaissance** — register a normal account, use the
+1. **Reconnaissance**: register a normal account, use the
    application exactly as intended (deposit, verify a recipient,
    send money, review transaction history). Identify every API
    endpoint this exercises and capture the request/response shape
    for each.
-2. **Authorization mapping** — identify the account/privilege model
+2. **Authorization mapping**: identify the account/privilege model
    (standard vs. premium tiers; user vs. admin roles) purely from
    observed application behavior, before assuming anything about the
    backend.
-3. **Input and object analysis** - for each write endpoint, determine
+3. **Input and object analysis**: for each write endpoint, determine
    exactly which fields the client controls versus which the server
    should be deriving independently. Compare what a GET response
    discloses against what the corresponding write endpoint accepts.
-4. **Business logic testing** - identify any endpoint with real,
+4. **Business logic testing**: identify any endpoint with real,
    stateful side effects (balance changes especially) and consider
    both authorization *and* concurrency as attack surfaces, not just
    input validation.
-5. **Escalation** — determine whether any finding provides
+5. **Escalation**: determine whether any finding provides
    reconnaissance value or code-path access toward another finding.
    Not every relationship between findings is a true technical
    dependency state this precisely in your writeup.
@@ -149,7 +149,7 @@ Finding 1 provides reconnaissance value toward the chain but is not a
 technical prerequisite for exploiting it; this distinction is
 addressed explicitly in the full report, since conflating
 "discoverability" with "dependency" is a common and here,
-deliberately corrected — mistake.
+deliberately corrected mistake.
 
 Full detail, reproduction steps, and evidence for every finding are in
 [`PENTEST_REPORT.md`](./PENTEST_REPORT.md).
