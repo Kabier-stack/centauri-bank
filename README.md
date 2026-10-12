@@ -113,8 +113,8 @@ nano .env
 Add the following lines:
 
 ```dotenv
-POSTGRES_PASSWORD=replace_with_a_strong_password
-JWT_SECRET=replace_with_your_generated_secret
+POSTGRES_PASSWORD=insert_a_strong_password
+JWT_SECRET=insert_your_generated_secret
 ```
 
 | `docker compose stop`            | Stop the running services without removing them. |
@@ -123,39 +123,6 @@ JWT_SECRET=replace_with_your_generated_secret
 
 The PostgreSQL data is stored in a persistent Docker volume, so running `docker compose down` does not normally delete the database data.
 
-**Warning:** Avoid `docker compose down -v` unless you intentionally want to remove the database volume and its stored data.
-
-### Troubleshooting
-
-**The application cannot connect to PostgreSQL**
-
-Check that the services are running:
-
-```bash
-docker compose ps
-```
-
-Review the logs:
-
-```bash
-docker compose logs postgres backend
-```
-
-**The backend fails to start**
-
-Check that `.env` exists in the main project directory and contains both `POSTGRES_PASSWORD` and `JWT_SECRET`.
-
-**The website does not load**
-
-Confirm that the frontend container is running and inspect its logs:
-
-```bash
-docker compose logs frontend
-```
-
-**Database migration fails**
-
-Make sure the backend and PostgreSQL containers are running, then review the error message. Do not repeatedly run commands without understanding the cause.
 
 ## Documentation
 
