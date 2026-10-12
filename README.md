@@ -98,39 +98,68 @@ git clone https://github.com/Kabier-stack/centauri-bank.git
 cd centauri-bank
 ```
 
-Copy the example environment file and fill in real values:
+### Step 2: Configure Environment Variables
+
+Centauri Bank needs a few private configuration values to connect to the database and handle authentication.
+
+An environment file named `.env` stores these values. It must be created in the main project directory, alongside `docker-compose.yml`.
+
+**Create the file:**
 
 ```bash
-cp .env.example .env
+nano .env
 ```
 
-Open `.env` and set a real `POSTGRES_PASSWORD`, and generate a real
-`JWT_SECRET`:
+Add the following lines:
+
+```dotenv
+POSTGRES_PASSWORD=replace_with_a_strong_password
+JWT_SECRET=replace_with_your_generated_secret
+```
+
+| `docker compose stop`            | Stop the running services without removing them. |
+| `docker compose up -d`           | Start the services again.                        |
+| `docker compose down`            | Stop and remove the containers and network.      |
+
+The PostgreSQL data is stored in a persistent Docker volume, so running `docker compose down` does not normally delete the database data.
+
+**Warning:** Avoid `docker compose down -v` unless you intentionally want to remove the database volume and its stored data.
+
+### Troubleshooting
+
+**The application cannot connect to PostgreSQL**
+
+Check that the services are running:
 
 ```bash
-node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+docker compose ps
 ```
 
-Paste the output into `.env` as `JWT_SECRET`.
-
-### Run
+Review the logs:
 
 ```bash
-docker compose up --build
+docker compose logs postgres backend
 ```
+
+**The backend fails to start**
+
+Check that `.env` exists in the main project directory and contains both `POSTGRES_PASSWORD` and `JWT_SECRET`.
+
+**The website does not load**
+
+Confirm that the frontend container is running and inspect its logs:
 
 ```bash
-docker compose exec backend npx prisma migrate deploy
+docker compose logs frontend
 ```
 
-Once running:
-- Frontend: `http://localhost:5173`
-- Backend API: `http://localhost:3001`
+**Database migration fails**
 
-Register a new account through the UI to begin testing. On first run only, apply database migrations:
+Make sure the backend and PostgreSQL containers are running, then review the error message. Do not repeatedly run commands without understanding the cause.
 
----
+### Security Notice
 
+Centauri Bank is a security learning and testing project. Use it locally or in an environment you are authorized to test. Do not expose the application or its test data publicly without appropriate security controls.
 ## Documentation
 
 | Document | Contents |
