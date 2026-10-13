@@ -1,4 +1,4 @@
-# F-01 — Recipient Lookup Information Disclosure
+# CBF-01 — Recipient Lookup Information Disclosure
 
 **Severity:** Low
 **OWASP Category:** API3:2023 — Broken Object Property Level Authorization
