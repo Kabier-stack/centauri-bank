@@ -1,4 +1,4 @@
-# F-05 — Broken Function-Level Authorization on Admin Action
+# CBF-005 Broken Function-Level Authorization on Admin Action
 
 **Severity:** Critical
 **OWASP Category:** API5:2023 — Broken Function Level Authorization
@@ -16,19 +16,19 @@ router.post("/admin/adjust-balance", requireAuth, controller.adjustBalance);
 ```
 
 `requireAuth` verifies the presence of a valid, signed JWT
-(**authentication** — "is this a real, logged-in user?") but performs
-no check of `req.user.role` (**authorization** — "is this specific
+(**authentication**  "is this a real, logged-in user?") but performs
+no check of `req.user.role` (**authorization**  "is this specific
 user allowed to do this specific thing?"). Despite the route's naming
 and evident administrative intent, any authenticated account,
 regardless of role, can successfully invoke it.
 
 The application's `User` model does include a `role` field (`USER` /
 `ADMIN`), confirming role-based restriction was an intended part of
-the design — this is an implementation omission, not an
+the design, this is an implementation omission, not an
 architectural absence of the concept.
 
 Notably, the underlying operation sets an **absolute** balance value
-(`data: { balance: newBalance }`), not a relative adjustment — meaning
+(`data: { balance: newBalance }`), not a relative adjustment, meaning
 successful exploitation allows setting any account to any arbitrary
 value, not merely crediting or debiting a bounded amount.
 
@@ -65,8 +65,8 @@ Confirmed performed by an account independently verified as
 
 Complete compromise of account balance integrity, exercisable by any
 authenticated user with no prerequisite conditions. This is the most
-severe and most directly reachable finding in this assessment — unlike
-F-02/F-03, it requires no chained access and no special account state.
+severe and most directly reachable finding in this assessment, unlike
+CBF-002/CBF-003, it requires no chained access and no special account state.
 
 ## Discovery Methodology
 
@@ -75,7 +75,7 @@ Identified via direct source review.
 
 ### Black-box — evaluated honestly, including likely failure
 
-Unlike F-02, no frontend code references this endpoint at all — no
+Unlike CBF-002, no frontend code references this endpoint at all, no
 admin UI exists in the application, so **bundle inspection provides
 no signal here**.
 
@@ -97,7 +97,7 @@ failing to discover this specific endpoint through automated or
 pattern-based means alone.
 
 **This does not reduce the finding's severity.** Absence of an easy
-discovery path is, at best, security through obscurity — it provides
+discovery path is, at best, security through obscurity, it provides
 no defense against an insider, a more determined attacker, or
 accidental disclosure through an unrelated misconfiguration. Once
 found, by any means, the endpoint is immediately and fully
@@ -105,7 +105,7 @@ exploitable.
 
 ## Root Cause
 
-Authorization middleware applied inconsistently — `requireAuth` was
+Authorization middleware applied inconsistently: `requireAuth` was
 treated as sufficient protection for a route that required a second,
 distinct check. Authentication and authorization are easy to conflate
 when only one identity-checking function exists in a codebase.
