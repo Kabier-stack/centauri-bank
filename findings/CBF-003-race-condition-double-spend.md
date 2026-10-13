@@ -2,7 +2,7 @@
 
 **Severity:** Critical
 **OWASP Category:** API6:2023 Unrestricted Access to Sensitive Business Flows
-**Affected Endpoint:** `POST /wallet/transfer` (via the express path, requires F-02)
+**Affected Endpoint:** `POST /wallet/transfer` (via the express path, requires CBF-002)
 
 ---
 
