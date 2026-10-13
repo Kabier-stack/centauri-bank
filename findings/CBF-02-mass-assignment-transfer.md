@@ -16,7 +16,7 @@ a legitimate account benefit.
 
 The server does not independently verify the sender's actual
 `accountTier` against the database before honoring this flag. Any
-authenticated account — regardless of tier — can access the
+authenticated account regardless of tier can access the
 privileged code path simply by including the flag in the request
 body.
 
