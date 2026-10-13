@@ -85,7 +85,7 @@ logic.
 
 ### Black-box equivalents
 
-**Frontend bundle inspection — successful.** The compiled JavaScript
+**Frontend bundle inspection.** The compiled JavaScript
 bundle, shipped to every browser regardless of the viewing user's
 tier, contains the same conditional logic shown above. This is
 discoverable via browser DevTools with no server-side or source
