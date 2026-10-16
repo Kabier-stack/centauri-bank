@@ -29,9 +29,7 @@ lifecycle of an AppSec engagement:
 2. Deliberately designing a **chained** vulnerability narrative,
    not a disconnected checklist
 3. Testing it through multiple methodologies manual API testing,
-   Burp Suite interception, automated parameter/route discovery
-   and reporting the honest results of each, including where tools
-   failed
+   Burp Suite interception, and reporting the results of each.
 4. Writing findings to a professional report standard: severity
    justification, reproduction steps, evidence, root cause,
    remediation
