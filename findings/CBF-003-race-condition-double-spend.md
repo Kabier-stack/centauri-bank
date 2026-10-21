@@ -64,7 +64,7 @@ ever be able to reach under correct logic.
 
 Direct, provable financial-integrity failure. A user can withdraw
 more funds than their account holds, given only access to the express
-path (F-02). This is the clearest, most concrete evidence of impact
+path (CBF-002). This is the clearest, most concrete evidence of impact
 in this assessment.
 
 ## Discovery Methodology
