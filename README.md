@@ -158,9 +158,7 @@ Full detail, reproduction steps, and evidence for every finding are in
 
 - Designing realistic, chained (not checklist) vulnerabilities tied
   to genuine product logic
-- Manual and tool-assisted black-box discovery (Burp Suite, Arjun,
-  Param Miner), including honest documentation of tool limitations
-  and a rejected attempt at a methodologically invalid test result
+- Manual and tool-assisted black-box discovery (Burp Suite)
 - Precise vulnerability classification (mass assignment vs. BOLA vs.
   BFLA) and self-correction when initial classification was imprecise
 - Professional security report writing, with verified citations and
