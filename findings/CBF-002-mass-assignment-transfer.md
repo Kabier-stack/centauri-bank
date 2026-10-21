@@ -54,7 +54,7 @@ Response:
 ```json
 {
   "message": "Transfer successful",
-  "reference": "VP-20260909-SNO8S8",
+  "reference": "CB-20260909-SNO8S8",
   "amount": 1,
   "express": true
 }
@@ -64,15 +64,12 @@ Response:
 Independently corroborated via:
 - The stored transaction's `description` field using the
   express-path-specific default string ("Express transfer to...")
-- A raw byte-length comparison confirming a consistent, reproducible
-  +15 byte difference between standard and express-flagged responses
-  (77 bytes vs. 92 bytes, stable across repeated trials)
 
 ## Impact
 
 Grants a Standard account unauthorized access to Premium-tier
 functionality on a per-request basis (the account's stored
-`accountTier` is never changed — this is not an account upgrade, but
+`accountTier` is never changed, this is not an account upgrade, but
 a per-request authorization bypass). Critically, this also grants
 access to the vulnerable code path documented in CBF-003, escalating
 this finding's real-world impact substantially.
@@ -95,7 +92,7 @@ access, and requires no prior knowledge of the parameter name.
 ## Root Cause
 
 Insufficient server-side control over client-supplied object
-properties — the server assumes a property's presence in the request
+properties, the server assumes a property's presence in the request
 implies authorization to invoke its associated behavior.
 
 ## Remediation
