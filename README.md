@@ -85,8 +85,7 @@ developed and documented under.
 
 ### Prerequisites
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/),
-  installed and running
+- Docker and Docker Compose: Docker Desktop for Windows/macOS, or Docker Engine with the Docker Compose plugin on Linux.
 - Git
 
 ### Setup
