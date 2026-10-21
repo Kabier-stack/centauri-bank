@@ -99,5 +99,5 @@ implies authorization to invoke its associated behavior.
 
 Remove `expressTransfer` as a client-trusted input entirely. Derive
 express-transfer eligibility server-side, from `senderWallet.accountTier`
-looked up fresh at request time — never from a value supplied in the
+looked up fresh at request time never from a value supplied in the
 request body.
