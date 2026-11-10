@@ -155,13 +155,12 @@ Full detail, reproduction steps, and evidence for every finding are in
 
 ## What This Project Demonstrates
 
-- Designing realistic, chained (not checklist) vulnerabilities tied
-  to genuine product logic
+- Designing realistic, chained vulnerabilities tied to genuine product logic
 - Manual and tool-assisted black-box discovery (Burp Suite)
 - Precise vulnerability classification (mass assignment vs. BOLA vs.
   BFLA) and self-correction when initial classification was imprecise
 - Professional security report writing, with verified citations and
-  justified — not merely asserted — severity ratings
+  justified
 - Full-stack implementation of the *correct*, non-vulnerable version
   of the same logic (`transferFunds`) alongside the intentionally
   flawed one (`expressTransferFunds`), demonstrating the fix is
