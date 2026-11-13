@@ -1,3 +1,4 @@
+
 services:
   postgres:
     image: postgres:16
@@ -9,6 +10,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
     expose:
       - "5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d centauribank"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
     build: ./centauri-bank-backend
@@ -18,10 +24,12 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    command: sh -c "npx prisma migrate deploy && npm start"
 
   frontend:
-    build:  ./centauri-bank-frontend
+    build: ./centauri-bank-frontend
     ports:
       - "5173:80"
     depends_on:
