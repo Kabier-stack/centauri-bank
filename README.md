@@ -84,41 +84,83 @@ developed and documented under.
 ## Running the Application
 
 ### Prerequisites
-
-- Docker and Docker Compose: Docker Desktop for Windows/macOS, or Docker Engine with the Docker Compose plugin on Linux.
+- Docker Engine
+- Docker Compose
 - Git
+- OpenSSL
 
-### Setup
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Kabier-stack/centauri-bank.git
 cd centauri-bank
 ```
 
-### Step 2: Configure Environment Variables
+### 2. Configure Environment Variables
 
-Centauri Bank needs a few private configuration values to connect to the database and handle authentication.
-
-An environment file named `.env` stores these values. It must be created in the main project directory, alongside `docker-compose.yml`.
-
-**Create the file:**
+Create a `.env` file in the project root:
 
 ```bash
 nano .env
 ```
 
-Add the following lines:
+Generate secure credentials:
 
-```dotenv
-POSTGRES_PASSWORD=insert_a_strong_password
-JWT_SECRET=insert_your_generated_secret
+```bash
+openssl rand -hex 24
+openssl rand -hex 32
 ```
 
-| `docker compose stop`            | Stop the running services without removing them. |
-| `docker compose up -d`           | Start the services again.                        |
-| `docker compose down`            | Stop and remove the containers and network.      |
+Add the generated values:
 
-The PostgreSQL data is stored in a persistent Docker volume, so running `docker compose down` does not normally delete the database data.
+```env
+POSTGRES_PASSWORD=your_generated_database_password
+JWT_SECRET=your_generated_jwt_secret
+```
+
+### 3. Build and Start the Application
+
+```bash
+docker compose up -d --build
+```
+
+Docker Compose automatically:
+- Starts PostgreSQL and waits for it to become healthy.
+- Applies Prisma database migrations.
+- Starts the backend and frontend services.
+
+### 4. Access the Application
+
+| Service | URL |
+|---|---|
+| Frontend | http://localhost:5173 |
+| Backend | http://localhost:3001 |
+
+### 5. Useful Docker Commands
+
+```bash
+# View container status
+docker compose ps
+
+# View application logs
+docker compose logs -f
+
+# Stop the application
+docker compose down
+
+# Rebuild and restart
+docker compose up -d --build
+```
+
+**Database persistence:** PostgreSQL data is stored in a Docker volume and is preserved when containers are stopped or removed using `docker compose down`.
+
+To delete the database and all stored data:
+
+```bash
+docker compose down -v
+```
+
+**Warning:** This permanently deletes all database records.
 
 
 ## Documentation
