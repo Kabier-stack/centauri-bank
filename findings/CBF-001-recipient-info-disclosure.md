@@ -10,7 +10,7 @@
 
 The recipient verification feature allows any authenticated user to
 look up basic details about another account before sending money to
-it, a legitimate, common banking UX pattern. However, the endpoint
+it. However, the endpoint
 requires only **authentication** (a valid token), not
 **authorization** (a check on whether the caller has any legitimate
 relationship to the specific account being queried). Any logged-in
@@ -18,11 +18,6 @@ user can query any account number.
 
 The response additionally discloses `accountTier`, which exceeds what
 a "confirm the payee's name before paying" feature requires.
-
-Account numbers in this application are short (10 digits) and
-generated without cryptographic randomness, making them practically
-enumerable, compounding the impact of the missing per-query
-authorization check.
 
 ## Steps to Reproduce
 
